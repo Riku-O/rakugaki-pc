@@ -1,0 +1,25 @@
+@charset "UTF-8";
+
+/*!
+Theme Name: RAKUGAKI-PC
+Author: colers by Yasuhiro Yamamoto
+Author URI: http://colers.jp
+Description: WP Starater theme.created by yasuhiro yamamoto.
+Version: 2.0.0
+*/
+
+/* Clean and Settings
+-----------------------------------------*/
+@import "reset";
+@import "mixin"; 
+@import "general"; 
+
+/* Common
+-----------------------------------------*/
+@import "header";
+@import "footer";
+
+/* Module and Frame
+-----------------------------------------*/
+@import "module";
+@import "frame";

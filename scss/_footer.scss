@@ -1,0 +1,36 @@
+@import "extend";
+
+.footer {
+  margin-top: auto;
+  background: #1a1a1a;
+  color: #fff;
+  &__wrap {
+    width: 280px;
+    margin: 0 auto;
+    padding: 24px 0 38px;
+  }
+  &__name {
+    font-size: 20px;
+    text-align: center;
+    font-weight: 700;
+  }
+  &__link {
+    color: #fff;
+  }
+  &__copy {
+    font-size: 10px;
+    text-align: center;
+    display: block;
+  }
+  &__list {
+    @include flex($type: center,$align: start,$w: 100%,$h: auto);
+    margin: 19px auto;
+  }
+  .menu-item {
+    margin: 8px;
+    font-size: 14px;
+    a {
+      color: #fff;
+    }
+  }
+}

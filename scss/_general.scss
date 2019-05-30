@@ -1,0 +1,25 @@
+html {
+    height: 100%;
+    overflow: auto;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+  overflow: hidden;
+  position: relative;
+  font-family: 'Noto Sans JP', sans-serif;
+  color: $text-baseColor;
+  margin: 0;
+  font-display: swap;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+}
+
+a {
+  transition : all .5s ease 0s;
+  &:hover {
+    opacity: .6;
+  }
+}

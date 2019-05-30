@@ -1,0 +1,25 @@
+/* Layout
+-----------------------------------------*/
+.container {
+  margin: 0 auto;
+  padding: 48px 0;
+  @include flex($type: bet,$align: start,$w: $main-width,$h: auto);
+  min-height: 0%;
+}
+
+.main {
+  width: 65%;
+}
+
+.sidebar {
+  width: 30%;
+  padding: 62px 0 0;
+}
+
+/* Frame @articles
+-----------------------------------------*/
+.articles {
+  &-side {
+    margin: 32px 0;
+  }
+}

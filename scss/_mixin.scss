@@ -1,0 +1,328 @@
+/* Variable
+-----------------------------------------*/
+$main-width: 1020px;
+$ipad12: 1024px;
+$ipad11: 834px;
+$ipad: 768px;
+$se: 320px;
+
+$path: "assets/img";
+$text-baseColor: #1a1a1a;
+$color-red: #cc321b;
+
+$xxl: 30px;
+$xl: 24px;
+$l: 19px;
+$m: 16px;
+$s: 14px;
+$xs: 13px;
+$xxs: 12px;
+
+
+/* Media Query 
+---------------------------------------------------*/
+@mixin media($breakpoint) {
+    @if $breakpoint == pc {
+        @media only screen and (min-width:$main-width + 1px) {
+            @content;
+        }
+    }
+    @else if $breakpoint == tb {
+        @media only screen and (max-width:$main-width) {
+            @content;
+        }
+    }
+    @else if $breakpoint == sp {
+        @media only screen and (max-width:$ipad - 1px) {
+            @content;
+        }
+    }
+    @else if $breakpoint == se {
+        @media only screen and (max-width:$se) {
+            @content;
+        }
+    }
+}
+
+
+/* Flex Box
+---------------------------------------------------*/
+@mixin flex($type: start,$align: stretch,$w: auto,$h: auto) {
+    @if $type == bet {
+        justify-content: space-between;
+    }
+    @else if $type == around {
+        justify-content: space-around;
+    }    
+    @else if $type == start {
+        justify-content: flex-start;
+    }  
+    @else if $type == end {
+        justify-content: flex-end;
+    }
+    @else if $type == center {
+        justify-content: center;
+    }
+    
+    @if $align == start {
+        align-items: flex-start;
+    }
+    @else if $align == center {
+        align-items: center;
+    }    
+    @else if $align == end {
+        align-items: flex-end;
+    }  
+    @else if $align == base {
+        align-items: baseline;
+    }
+    display: flex;
+    flex-wrap: wrap;
+    width: $w;
+    height: $h;
+}
+
+/* Flex Item 
+---------------------------------------------------*/
+@mixin flex-item($count-row: 3,$mg: 16px) {
+    width: calc((99.9% - (#{$mg} * (#{$count-row} - 1))) / #{$count-row});
+    margin-right: $mg;
+    &:last-child, &:nth-child(#{$count-row}n) {
+        margin-right: 0;
+    }
+}
+
+/* Parts Button
+---------------------------------------------------*/
+@mixin btn($bg: #404040,$color: #fff,$w: 250px,$h: 50px, $hover: false) {
+    @include flex($type: center,$align: center,$w: $w,$h: $h);
+    background-color: $bg;
+    color: $color;
+    border: 1px solid $bg;
+    transition : all .5s ease 0s;
+    @if $hover == true {
+        &:hover {
+            color: $bg;
+            background: $color;
+        }
+    }
+}
+
+/* Parts Fa Icon before or after
+---------------------------------------------------*/
+@mixin icon-fa($position: before,$icon: "\f105") {
+    @if $position == before {
+        &:before {
+            content: $icon;
+            font-family: FontAwesome;
+            @content;
+        }
+    }
+    @else {
+        &:after {
+            content: $icon;
+            font-family: FontAwesome;
+            @content;
+        }
+    }
+}
+
+/* Parts Icon Bg 
+---------------------------------------------------*/
+@mixin icon-bg($x: left, $y: center,$url: "", $size:40px) {
+    background-image: url("#{$path}/#{$url}");
+    background-repeat: no-repeat;
+    background-size: $size;
+    background-position: $y $x;
+}
+
+/* Parts Table 
+---------------------------------------------------*/
+@mixin table($table_w: 100%,$head: head, $body: body, $head_h: 30px, $head_w: 25%) {
+    @include flex($type: start,$align: start,$w: $table_w,$h: auto);
+    &__#{$head} {
+        @include flex($type: start,$align: center,$w: $head_w,$h: $head_h);
+    }
+    &__#{$body} {
+        $body_w: 100% - $head_w;
+        @include flex($type: start,$align: center,$w: $body_w,$h: $head_h);
+    }
+}
+
+/* Parts border 
+---------------------------------------------------*/
+@mixin text-border-short($w: 100px, $h: 3px, $bg: #eee) {
+    &:after {
+        content: "";
+        display: block;
+        width: $w;
+        height: $h;
+        background: $bg;
+        margin: 8px auto 0 auto;
+    }
+}
+
+/* Parts border 
+---------------------------------------------------*/
+@mixin text-border-right-left($h: 1px, $bg: #eee, $mg: 12px) {
+    @include flex($type: center, $align: center, $w: 100%, $h: auto);
+    flex-wrap: nowrap;
+    &:before {
+        content: "";
+        display: block;
+        width: 50%;
+        height: $h;
+        background: $bg;
+        margin: 0 $mg 0 auto;
+    }
+    &:after {
+        content: "";
+        display: block;
+        width: 50%;
+        height: $h;
+        background: $bg;
+        margin: 0 auto 0 $mg;
+    }
+}
+
+/* Parts Talk Baloon 
+---------------------------------------------------*/
+@mixin talk($h: 100px, $w: 200px, $bg: #eee, $pos: bottom, $size: 30px) {
+    position: relative;
+    background: $bg;
+    height: $h;
+    width: $w;
+    @if $pos == bottom {
+        margin-bottom: $size;
+        &:after {
+            content: '';
+            position: absolute;
+            display: block;
+            width: 0;
+            height: 0;
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+            bottom: -$size;
+            border-top: $size solid $bg;
+            border-right: $size solid transparent;
+            border-left: $size solid transparent;
+        }
+    }
+    @else if $pos == top {
+        margin-top: $size;
+        &:after {
+            content: '';
+            position: absolute;
+            display: block;
+            width: 0;
+            height: 0;
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+            top: -$size;
+            border-bottom: $size solid $bg;
+            border-right: $size solid transparent;
+            border-left: $size solid transparent;
+        }
+    }
+    @else if $pos == right {
+        margin-right: $size;
+        &:after {
+            content: '';
+            position: absolute;
+            display: block;
+            width: 0;
+            height: 0;
+            top: 0;
+            bottom: 0;
+            margin: auto 0;
+            right: -$size;
+            border-left: $size solid $bg;
+            border-top: $size solid transparent;
+            border-bottom: $size solid transparent;
+        }
+    }
+    @else if $pos == left {
+        margin-left: $size;
+        &:after {
+            content: '';
+            position: absolute;
+            display: block;
+            width: 0;
+            height: 0;
+            top: 0;
+            bottom: 0;
+            margin: auto 0;
+            left: -$size;
+            border-right: $size solid $bg;
+            border-top: $size solid transparent;
+            border-bottom: $size solid transparent;
+        }
+    }
+}
+
+/* Parts Checkbox image 
+---------------------------------------------------*/
+@mixin radio-img($w: 100%, $img_size: 20px, $mg: 10px) {
+    &__check {
+        cursor: pointer; 
+    }
+    &__check-wrap {
+        width: $w;
+    }
+    &__check-hidden {
+        appearance: none;
+        position: relative;
+        width: $img_size;
+        height: $img_size;
+        vertical-align: middle;
+        background: url(#{$path}/radio-off.png) no-repeat;
+        background-size: contain;
+        margin: 0 $mg 2px 0;
+        cursor: pointer; 
+    }
+    &__check-hidden:checked::before {
+        content: "";
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        width: $img_size;
+        height: $img_size;
+        background: url(#{$path}/radio-on.png) no-repeat;
+        background-size: contain; 
+    }
+}
+
+/* background-image
+-----------------------------------------*/
+@mixin bg-img($filename:"sample.jpg", $repeat: no-repeat, $size: cover) {
+  background-image: url("assets/img/#{$filename}");
+  background-repeat: $repeat;
+  background-size: $size;
+}
+
+
+/* triangle
+-----------------------------------------*/
+@mixin triangle($type: top, $size: 200px, $sub-size: 50px, $color: #000) {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  @if $type == left {
+    border-width: $sub-size $size $sub-size 0;
+    border-color: transparent $color transparent transparent;
+  }
+  @else if $type == top {
+    border-width: 0 $sub-size $size $sub-size;
+    border-color: transparent transparent $color transparent;    
+  }
+  @else if $type == right {
+    border-width: $sub-size 0 $sub-size $size;
+    border-color: transparent transparent transparent $color;
+  }
+  @else if $type == bottom {
+    border-width: $size $sub-size 0 $sub-size;
+    border-color: $color transparent transparent transparent;
+  }
+}
