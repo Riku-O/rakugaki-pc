@@ -1094,8 +1094,24 @@
     margin-bottom: 7px;
   }
 
-  td {
-  border: 1px solid #444444 !important;
+  table {
+    border: 2px solid #dcdcdc;
+    border-collapse: collapse;
+    margin: 20px 0;
+    tr {
+      border: 2px solid #dcdcdc;
+    }
+    th {
+      border: 2px solid #dcdcdc;
+      font-weight: 700;
+      padding: 8px;
+      line-height: 1.33;
+    }
+    td {
+      border: 2px solid #dcdcdc;
+      padding: 8px;
+      line-height: 1.33;
+    }
   }
 
   /*--------------------
