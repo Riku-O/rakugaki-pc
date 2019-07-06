@@ -9,6 +9,7 @@
       <?php
       $args = array( 
         'post_type' => 'apps',
+		'posts_per_page' => -1,
         'order' => 'ASC'        
       );
       $the_query = new WP_Query($args); if($the_query->have_posts()):

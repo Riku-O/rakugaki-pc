@@ -165,6 +165,7 @@
       <?php
       $args = array( 
         'post_type' => 'apps',
+		'posts_per_page' => -1,
         'order' => 'ASC'        
       );
       $the_query = new WP_Query($args); if($the_query->have_posts()):
@@ -212,5 +213,5 @@
   </div>
 </section>
 <div class="sidebar-fb">
-  <a class="twitter-timeline" data-height="800" data-theme="dark" href="https://twitter.com/TwitterDev/timelines/539487832448843776?ref_src=twsrc%5Etfw">National Park Tweets - Curated tweets by TwitterDev</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+	<a class="twitter-timeline" data-height="800" data-theme="dark" href="https://twitter.com/<?php echo getOptionValue('tw'); ?>?ref_src=twsrc%5Etfw">Tweets by <?php echo getOptionValue('tw'); ?></a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </div>

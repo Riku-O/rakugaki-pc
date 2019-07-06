@@ -10,6 +10,7 @@
       array(
         'orderby'=>ID,
         'order'=>ASC,
+		'number'=>'5',
         'meta_query'    => array(
           array(
             'key'     => 'writer_name',

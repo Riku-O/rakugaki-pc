@@ -6,33 +6,34 @@
 
       <div class="swiper-container swiper-fv">
     <div class="swiper-wrapper">
-  <?php
+	
+	   <?php
   $args = array(
     'post_type' => 'post',
-    'posts_per_page' => 1
+    'posts_per_page' => 1,
   );
-  $the_query = new WP_Query($args); if($the_query->have_posts()):
-  ?>
-  <?php while ($the_query->have_posts()): $the_query->the_post(); ?>
+   $the_query = new WP_Query($args); if($the_query->have_posts()):
+   ?>
+   <?php while ($the_query->have_posts()): $the_query->the_post(); ?>
   <a class="kv__wrap swiper-slide" href="<?php the_permalink(); ?>">
-    <div class="kv__img">
-      <div class="kv__img-eye" style="background: url(<?php echo get_thumbnail(); ?>); background-size: cover; height: 260px;"></div>
-    </div>
-    <div class="kv__desc">
-      <h2 class="kv__ttl"><?php the_title(); ?></h2>
-      <p class="kv__date"><time class="kv__time" datetime="<?php echo get_the_date( 'Y-m-d' ); ?>"><?php echo get_the_date( 'Y.m.d' ); ?></time></p>
-    </div>
+   <div class="kv__img">
+     <div class="kv__img-eye" style="background: url(<?php echo get_thumbnail(); ?>); background-size: cover; height: 260px;"></div>
+   </div>
+   <div class="kv__desc">
+     <h2 class="kv__ttl"><?php the_title(); ?></h2>
+     <p class="kv__date"><time class="kv__time" datetime="<?php echo get_the_date( 'Y-m-d' ); ?>"><?php echo get_the_date( 'Y.m.d' ); ?></time></p>
+   </div>
   </a>
-  <?php endwhile; ?>
-  <?php wp_reset_postdata(); ?>
-  <?php endif; ?>
+   <?php endwhile; ?>
+   <?php wp_reset_postdata(); ?>
+   <?php endif; ?>
   
    <?php
   $args = array(
     'post_type' => 'post',
     'post_status' => 'publish',
     'posts_per_page' => 4,
-    'orderby' => array( 'favrite' => 'ASC'),
+    'orderby' => array( 'favorite' => 'ASC'),
     'meta_query' => array(
       'relation' => 'AND',
       'ranking'=>array(

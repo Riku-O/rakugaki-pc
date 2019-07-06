@@ -17,6 +17,8 @@
   </a>
 
   <?php endwhile; ?>
-  <?php get_template_part('parts/pagination'); ?>
+    <?php get_template_part('parts/pagination'); ?>
+  <?php else : ?>
+  <p>まだ記事はありません。</p>
   <?php endif; ?>
 <!-- /.articles --></section>
